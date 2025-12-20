@@ -2,12 +2,12 @@ Imagens do Projeto TechFocus
 
 
 
-Dashboard - Modo Escuro
+Modo Escuro
 <div style="text-align: center;">
   <img src="https://github.com/gabr1elcodes/Tech-Focus/blob/main/techfocus-darkmode.PNG" alt="Dashboard Dark Mode" width="600" />
 </div>
 
-Dashboard - Modo Claro
+Modo Claro
 <div style="text-align: center;">
   <img src="https://github.com/gabr1elcodes/Tech-Focus/blob/main/techfocus-lightmode.PNG" alt="Dashboard Light Mode" width="600" />
 </div>
