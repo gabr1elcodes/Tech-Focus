@@ -1,15 +1,22 @@
-
-
 Imagens do Projeto TechFocus
 
+
+
 Dashboard - Modo Escuro
-<img src="https://github.com/seu-usuario/TechFocus/raw/main/techfocus-darkmode.PNG" alt="Dashboard Dark Mode" width="600" />
+<div style="text-align: center;">
+  <img src="https://github.com/gabr1elcodes/Tech-Focus/blob/main/techfocus-darkmode.PNG" alt="Dashboard Dark Mode" width="600" />
+</div>
 
 Dashboard - Modo Claro
-<img src="https://github.com/seu-usuario/TechFocus/raw/main/techfocus-lightmode.PNG" alt="Dashboard Light Mode" width="600" />
+<div style="text-align: center;">
+  <img src="https://github.com/gabr1elcodes/Tech-Focus/blob/main/techfocus-lightmode.PNG" alt="Dashboard Light Mode" width="600" />
+</div>
+
 
 Tela de Login
-<img src="https://github.com/seu-usuario/TechFocus/raw/main/login-techfocus.PNG" alt="Login TechFocus" width="400" />
+<div style="text-align: center;">
+<img src="https://github.com/gabr1elcodes/Tech-Focus/blob/main/login-techfocus.PNG" alt="Login TechFocus" width="600" />
+</div>
 
 
 
