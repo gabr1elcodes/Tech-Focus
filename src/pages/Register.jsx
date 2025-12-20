@@ -4,6 +4,7 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import techfocusLogo from '../assets/techfocusLogo.png'
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -115,9 +116,10 @@ export default function Register() {
 
           <p className="text-center text-sm mt-4 text-gray-300">
               Já tem uma conta?{" "}
-            <a href="/" className="text-blue-300 hover:underline">
+            <Link to="/" className="text-blue-300 hover:underline">
               Voltar para Login
-            </a>
+            </Link>
+
           </p>
 
         </form>
