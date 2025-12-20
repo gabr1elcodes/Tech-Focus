@@ -1,5 +1,18 @@
 TechFocus 🚀
 
+Imagens do Projeto TechFocus
+
+#### Dashboard - Modo Escuro
+<img src="assets/techfocus-darkmode.PNG" alt="Dashboard Dark Mode" width="600" />
+
+#### Dashboard - Modo Claro
+<img src="assets/techfocus-lightmode.PNG" alt="Dashboard Light Mode" width="600" />
+
+#### Tela de Login
+<img src="assets/login-techfocus.PNG" alt="Login TechFocus" width="400" />
+
+
+
 TechFocus é um projeto criado com React, TailwindCSS e Vite, desenvolvido para organizar notas, ideias e tarefas de forma rápida, intuitiva e visualmente agradável.  
 
 O projeto permite criar, editar e excluir notas, salvar o login do usuário, alternar entre modo claro e escuro, e armazenar dados localmente com segurança. Ideal para quem busca produtividade minimalista e funcional.
@@ -21,20 +34,23 @@ Funcionalidades:
 - Componentização completa (Header, Sidebar, NoteCard, Modals)
 ---
 LinkedIn: https://www.linkedin.com/in/gabriel-oliveira-871b06359/
+
 Gmail: gabrieloliveira30p@gmail.com
+
 Github: https://github.com/gabr1elcodes
 
-Tecnologias e Bibliotecas Usadas: 
 
-| Tecnologia / Biblioteca | Logo |
-|-------------------------|------|
-| React                   | ![React](https://raw.githubusercontent.com/github/explore/main/topics/react/react.png) |
-| Vite                    | ![Vite](https://raw.githubusercontent.com/vitejs/branding/main/logo.svg) |
-| TailwindCSS             | ![TailwindCSS](https://raw.githubusercontent.com/github/explore/main/topics/tailwind/tailwind.png) |
-| JavaScript (ES6+)       | ![JS](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png) |
-| HTML & CSS              | ![HTML](https://raw.githubusercontent.com/github/explore/main/topics/html/html.png) ![CSS](https://raw.githubusercontent.com/github/explore/main/topics/css/css.png) |
-| React Router Dom        | ![React Router](https://raw.githubusercontent.com/remix-run/react-router/main/docs/public/logo.png) |
-| LocalStorage            | ![LocalStorage](https://upload.wikimedia.org/wikipedia/commons/d/d7/LocalStorage.svg) |
-| Lucide Icons            | ![Lucide](https://raw.githubusercontent.com/lucide-icons/lucide/main/assets/lucide.svg) |
-| BoxIcons (ícones)       | ![BoxIcons](https://boxicons.com/static/img/boxicons-logo.svg) |
-| Framer Motion (se usado para animações) | ![Framer Motion](https://raw.githubusercontent.com/framer/framer/main/logo.svg) |
+Tecnologias e Bibliotecas Usadas:
+
+- ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) React
+- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) Vite
+- ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white) TailwindCSS
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) JavaScript (ES6+)
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) HTML5
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) CSS3
+- ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) React Router Dom
+- ![LocalStorage](https://img.shields.io/badge/LocalStorage-FFA500?style=for-the-badge) LocalStorage
+- ![Lucide Icons](https://img.shields.io/badge/Lucide-000000?style=for-the-badge) Lucide Icons
+- ![BoxIcons](https://img.shields.io/badge/BoxIcons-00BFFF?style=for-the-badge) BoxIcons
+- ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge) Framer Motion
+
