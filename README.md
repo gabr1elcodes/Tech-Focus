@@ -1,16 +1,40 @@
-# React + Vite
+TechFocus 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TechFocus é um projeto criado com React, TailwindCSS e Vite, desenvolvido para organizar notas, ideias e tarefas de forma rápida, intuitiva e visualmente agradável.  
 
-Currently, two official plugins are available:
+O projeto permite criar, editar e excluir notas, salvar o login do usuário, alternar entre modo claro e escuro, e armazenar dados localmente com segurança. Ideal para quem busca produtividade minimalista e funcional.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto ainda está em produção e em constante desenvolvimento, com novas funcionalidades e melhorias planejadas.
+---
+Funcionalidades:
 
-## React Compiler
+- Login com validação de email e "Lembrar senha"
+- Dashboard com cards de notas
+- Criar, editar e excluir notas
+- Modal detalhado para cada nota
+- Perfil do usuário com avatar (com fallback para logo do projeto)
+- Dark Mode / Light Mode
+- Armazenamento local de notas usando localStorage
+- Design responsivo e moderno com TailwindCSS
+- Navegação entre páginas com React Router
+- Feedback visual (toasts) ao realizar ações
+- Componentização completa (Header, Sidebar, NoteCard, Modals)
+---
+LinkedIn: https://www.linkedin.com/in/gabriel-oliveira-871b06359/
+Gmail: gabrieloliveira30p@gmail.com
+Github: https://github.com/gabr1elcodes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tecnologias e Bibliotecas Usadas: 
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Tecnologia / Biblioteca | Logo |
+|-------------------------|------|
+| React                   | ![React](https://raw.githubusercontent.com/github/explore/main/topics/react/react.png) |
+| Vite                    | ![Vite](https://raw.githubusercontent.com/vitejs/branding/main/logo.svg) |
+| TailwindCSS             | ![TailwindCSS](https://raw.githubusercontent.com/github/explore/main/topics/tailwind/tailwind.png) |
+| JavaScript (ES6+)       | ![JS](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png) |
+| HTML & CSS              | ![HTML](https://raw.githubusercontent.com/github/explore/main/topics/html/html.png) ![CSS](https://raw.githubusercontent.com/github/explore/main/topics/css/css.png) |
+| React Router Dom        | ![React Router](https://raw.githubusercontent.com/remix-run/react-router/main/docs/public/logo.png) |
+| LocalStorage            | ![LocalStorage](https://upload.wikimedia.org/wikipedia/commons/d/d7/LocalStorage.svg) |
+| Lucide Icons            | ![Lucide](https://raw.githubusercontent.com/lucide-icons/lucide/main/assets/lucide.svg) |
+| BoxIcons (ícones)       | ![BoxIcons](https://boxicons.com/static/img/boxicons-logo.svg) |
+| Framer Motion (se usado para animações) | ![Framer Motion](https://raw.githubusercontent.com/framer/framer/main/logo.svg) |
