@@ -4,12 +4,27 @@ import techfocusLogo from '../assets/techfocusLogo.png';
 const ProfileModal = ({ isOpen, onClose, user, setUser }) => {
   if (!isOpen) return null;
 
-  // Fallback seguro para avatar
-  const avatarSrc = user.avatar && user.avatar.trim() !== "" ? user.avatar : techfocusLogo;
+  const avatarSrc =
+    user.avatar && user.avatar.trim() !== ""
+      ? user.avatar
+      : techfocusLogo;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-[400px] max-w-full">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 flex items-center justify-center
+                 bg-black/40 backdrop-blur-sm z-50"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="
+          bg-white dark:bg-gray-800
+          rounded-xl shadow-lg
+          p-6
+          w-full max-w-sm
+          max-h-[90vh] overflow-y-auto
+        "
+      >
         <div className="flex flex-col items-center space-y-4">
           
           {/* Avatar */}
@@ -21,13 +36,19 @@ const ProfileModal = ({ isOpen, onClose, user, setUser }) => {
             />
           </div>
 
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">{user.name}</h2>
-          <p className="text-gray-600 dark:text-gray-300">{user.email}</p>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            {user.name}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300">
+            {user.email}
+          </p>
 
           <div className="flex justify-around w-full mt-4">
             <div className="text-center">
               <span className="font-bold">{user.notes}</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Notas</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Notas
+              </p>
             </div>
           </div>
 
@@ -48,14 +69,17 @@ const ProfileModal = ({ isOpen, onClose, user, setUser }) => {
             className="text-sm"
           />
 
-          <div className="flex gap-3 mt-6">
+          {/* Ações */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-6 w-full">
             <button
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg"
               onClick={onClose}
+              className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
             >
               Fechar
             </button>
-            <button className="px-4 py-2 bg-green-500 text-white rounded-lg">
+            <button
+              className="w-full px-4 py-2 bg-green-500 text-white rounded-lg"
+            >
               Editar Perfil
             </button>
           </div>

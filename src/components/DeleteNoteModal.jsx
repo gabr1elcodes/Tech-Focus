@@ -10,8 +10,9 @@ export default function DeleteNoteModal({ note, onCancel, onConfirm }) {
 
       {/* PAINEL — PRECISA SER relative + z-10 */}
       <div className="relative z-10 w-full max-w-sm mx-4
-                      bg-white dark:bg-gray-900
-                      rounded-xl shadow-xl p-6">
+                max-h-[90vh] overflow-y-auto
+                bg-white dark:bg-gray-900
+                rounded-xl shadow-xl p-6">
 
         <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
           Excluir nota
@@ -25,7 +26,7 @@ export default function DeleteNoteModal({ note, onCancel, onConfirm }) {
           <button
             onClick={onCancel}
             className="flex-1 px-3 py-2 text-sm rounded-lg
-                       bg-gray-200 dark:bg-gray-700
+                       bg-gray-200 dark:bg-gray-700 flex-col sm:flex-row
                        text-gray-800 dark:text-white"
           >
             Cancelar
@@ -33,7 +34,7 @@ export default function DeleteNoteModal({ note, onCancel, onConfirm }) {
 
           <button
             onClick={onConfirm}
-            className="flex-1 px-3 py-2 text-sm rounded-lg
+            className="flex-1 px-3 py-2 text-sm rounded-lg flex-col sm:flex-row
                        bg-red-600 text-white hover:bg-red-700 transition"
           >
             Excluir

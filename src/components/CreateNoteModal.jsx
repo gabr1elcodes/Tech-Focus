@@ -24,7 +24,7 @@ export default function CreateNoteModal({ onClose, onCreate }) {
 
       <div className="relative z-10 w-full max-w-md mx-4
                       bg-white dark:bg-gray-900
-                      rounded-xl shadow-xl p-6">
+                      rounded-xl shadow-xl p-4 sm:p-6">
 
         <h2 className="text-lg font-semibold mb-4">
           Nova nota

@@ -72,14 +72,12 @@ export default function Dashboard() {
   const [isCreatingNote, setIsCreatingNote] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-const [user, setUser] = useState({
-  avatar: "", // ou uma URL genérica de placeholder
-  name: "Gabriel Oliveira",
-  email: "gabriel@email.com",
-  notes: 12
-});
-
-
+  const [user, setUser] = useState({
+    avatar: "", // ou uma URL genérica de placeholder
+    name: "Gabriel Oliveira",
+    email: "gabriel@email.com",
+    notes: 12
+  });
 
   // 🌙 Dark Mode
   const [darkMode, setDarkMode] = useState(() => {
@@ -132,34 +130,34 @@ const [user, setUser] = useState({
   }
 
   function handleSaveEdit(id, title, cardDescription) {
-  const updatedNotes = notes.map(note =>
-    note.id === id
-      ? { ...note, title, cardDescription }
-      : note
-  );
+    const updatedNotes = notes.map(note =>
+      note.id === id
+        ? { ...note, title, cardDescription }
+        : note
+    );
 
-  setNotes(updatedNotes);
-  saveNotes(updatedNotes);
-  setEditingNote(null);
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
+    setEditingNote(null);
   }
 
   function handleDeleteNote(note) {
-  setDeletingNote(note);
-}
+    setDeletingNote(note);
+  }
 
-function confirmDelete(id) {
-  const updatedNotes = notes.filter(note => note.id !== id);
+  function confirmDelete(id) {
+    const updatedNotes = notes.filter(note => note.id !== id);
 
-  setNotes(updatedNotes);
-  saveNotes(updatedNotes);
-  setDeletingNote(null);
-}
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
+    setDeletingNote(null);
+  }
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
 
       {/* Sidebar */}
-      <aside>
+      <aside className="hidden md:block">
         <Sidebar />
       </aside>
 
@@ -175,10 +173,11 @@ function confirmDelete(id) {
         />
 
         {/* Main */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto">
 
           {showWelcome && (
-            <div className="mb-6 p-4 rounded-xl bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-between transition-colors">
+            <div className="mb-6 p-4 rounded-xl bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700
+            flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between transition-colors">
               <p className="text-blue-700 dark:text-blue-300 font-medium">
                 Seja bem-vindo ao <span className="font-semibold">TechFocus</span> 👋
               </p>
@@ -195,7 +194,7 @@ function confirmDelete(id) {
           {notes.length === 0 ? (
             <EmptyState />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
               {notes.map((note) => (
                 <NoteCard
                   key={note.id}
@@ -239,11 +238,11 @@ function confirmDelete(id) {
         <CreateNoteModal
           onClose={() => setIsCreatingNote(false)}
           onCreate={(newNote) => {
-          const updatedNotes = [newNote, ...notes];
-          setNotes(updatedNotes);
-          saveNotes(updatedNotes);
-          setIsCreatingNote(false);
-        }}
+            const updatedNotes = [newNote, ...notes];
+            setNotes(updatedNotes);
+            saveNotes(updatedNotes);
+            setIsCreatingNote(false);
+          }}
         />
       )}
 

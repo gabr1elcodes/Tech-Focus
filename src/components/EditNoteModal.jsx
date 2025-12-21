@@ -17,7 +17,7 @@ export default function EditNoteModal({ note, onSave, onClose }) {
             />
 
             {/* Painel */}
-            <div className="relative w-full max-w-md mx-4 bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6">
+            <div className="relative w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-xl shadow-xl p-4 sm:p-6">
                 <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
                     Editar card
                 </h2>

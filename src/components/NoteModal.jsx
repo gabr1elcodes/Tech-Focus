@@ -49,12 +49,17 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
       <div
         onClick={e => e.stopPropagation()}
         className="
-          w-full max-w-6xl max-h-[94vh]
+          w-full
+          max-w-6xl
+          max-h-[94vh]
           bg-white dark:bg-gray-900
-          rounded-3xl shadow-2xl
-          p-8 flex flex-col
-        "
+          rounded-2xl sm:rounded-3xl
+          shadow-2xl
+          p-4 sm:p-8
+          mx-2 sm:mx-0
+          flex flex-col"
       >
+
         {/* HEADER */}
         <header className="flex justify-between items-center pb-3">
           {focusContent ? (
@@ -66,7 +71,7 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
             </button>
           ) : (
             <div>
-              <h2 className="text-2xl font-semibold flex items-center gap-2">
+              <h2 className="text-lg sm:text-2xl font-semibold flex items-center gap-2">
                 📝 {note.title}
               </h2>
               <p className="text-sm text-gray-500">
@@ -84,7 +89,7 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
         </header>
 
         {/* CONTEÚDO */}
-        <div className="flex-1 overflow-y-auto pr-2">
+        <div className="flex-1 overflow-y-auto pr-0 sm:pr-2">
           {focusContent ? (
             /* CONTEÚDO EM DESTAQUE */
             <section className="h-full rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 px-6 py-4">
@@ -102,8 +107,7 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
                   onBlur={() => setIsEditing(false)}
                   placeholder="Escreva livremente aqui…"
                   className="
-                    w-full
-                    h-[72vh]
+                    w-full h-[50vh] sm:h-[72vh]
                     bg-transparent resize-none outline-none
                     text-gray-800 dark:text-gray-200
                     leading-relaxed text-base
@@ -117,9 +121,7 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
                     text-gray-700 dark:text-gray-300
                     hover:bg-black/5 dark:hover:bg-white/5
                     transition whitespace-pre-wrap
-                    min-h-[72vh]
-                    text-base
-                  "
+                    min-h-[50vh] sm:min-h-[72vh] text-base"
                 >
                   {content.trim() || (
                     <span className="text-gray-400 italic">
@@ -141,7 +143,8 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
                   <button
                     onClick={() => setFocusContent(true)}
                     className="
-                      text-xs px-3 py-1 rounded-full
+                      text-xs sm:text-sm
+                      px-3 py-1.5 sm:py-1 rounded-full
                       bg-blue-100 text-blue-700
                       hover:bg-blue-200 transition
                     "
@@ -233,12 +236,16 @@ export function NoteModal({ isOpen, onClose, note, onSave }) {
         )}
 
         {/* FOOTER */}
-        <footer className="flex justify-between items-center pt-4 border-t dark:border-gray-700">
+        <footer className="
+            flex flex-col sm:flex-row
+            gap-3 sm:gap-0
+            justify-between sm:items-center
+            pt-4 border-t dark:border-gray-700">
           <span className="text-xs text-gray-400">
             TechFocus • 2026
           </span>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={onClose}
               className="
