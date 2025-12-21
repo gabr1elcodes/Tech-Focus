@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Bell, Settings, Moon, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function LogoMenu({ darkMode, onToggleDarkMode, onOpenProfile }) {
+export default function LogoMenu({ darkMode, onToggleDarkMode, onOpenProfile, user }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -16,6 +16,11 @@ export default function LogoMenu({ darkMode, onToggleDarkMode, onOpenProfile }) 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const avatarSrc =
+    user.avatar && user.avatar.trim() !== ""
+      ? user.avatar
+      : "https://via.placeholder.com/40?text=TF"; // Placeholder caso não tenha avatar
+
   return (
     <div ref={containerRef} className="relative inline-block">
       {/* Avatar */}
@@ -27,10 +32,11 @@ export default function LogoMenu({ darkMode, onToggleDarkMode, onOpenProfile }) 
           flex items-center justify-center
           text-sm font-semibold
           cursor-pointer
+          overflow-hidden
         "
         onClick={() => setOpen(prev => !prev)}
       >
-        TF
+        <img src={avatarSrc} alt="Avatar" className="w-full h-full object-cover" />
       </div>
 
       {open && (

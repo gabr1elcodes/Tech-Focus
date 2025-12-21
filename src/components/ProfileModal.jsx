@@ -1,89 +1,83 @@
-import React from "react";
-import techfocusLogo from '../assets/techfocusLogo.png';
+import React, { useState, useEffect } from "react";
+import techfocusLogo from "../assets/techfocusLogo.png";
 
 const ProfileModal = ({ isOpen, onClose, user, setUser }) => {
   if (!isOpen) return null;
 
-  const avatarSrc =
-    user.avatar && user.avatar.trim() !== ""
-      ? user.avatar
-      : techfocusLogo;
+  const [name, setName] = useState(user.name || "");
+  const [bio, setBio] = useState(user.bio || "");
+
+  useEffect(() => {
+    setName(user.name || "");
+    setBio(user.bio || "");
+  }, [user]);
+
+  const avatarSrc = user.avatar && user.avatar.trim() !== "" ? user.avatar : techfocusLogo;
+
+  function handleSave() {
+    setUser({ ...user, name, bio });
+    localStorage.setItem("techfocus_user", JSON.stringify({ ...user, name, bio }));
+    onClose();
+  }
+
+  function handleRemoveAvatar() {
+    setUser(prev => ({ ...prev, avatar: "" }));
+  }
 
   return (
-    <div
-      onClick={onClose}
-      className="fixed inset-0 flex items-center justify-center
-                 bg-black/40 backdrop-blur-sm z-50"
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="
-          bg-white dark:bg-gray-800
-          rounded-xl shadow-lg
-          p-6
-          w-full max-w-sm
-          max-h-[90vh] overflow-y-auto
-        "
-      >
+    <div onClick={onClose} className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
+      <div onClick={e => e.stopPropagation()} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full max-w-sm max-h-[90vh] overflow-y-auto">
         <div className="flex flex-col items-center space-y-4">
-          
-          {/* Avatar */}
-          <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
-            <img
-              src={avatarSrc}
-              alt="Avatar"
-              className="w-full h-full object-cover"
+          <div className="w-24 h-24 rounded-full overflow-hidden">
+            <img src={avatarSrc} alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+
+          <div className="flex gap-2 text-sm">
+            <label className="cursor-pointer text-blue-600 hover:underline">
+              Alterar foto
+              <input
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={e => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setUser(prev => ({ ...prev, avatar: reader.result }));
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+              />
+            </label>
+            {user.avatar && <button onClick={handleRemoveAvatar} className="text-red-500 hover:underline">Remover</button>}
+          </div>
+
+          <div className="w-full">
+            <label className="text-sm text-gray-600 dark:text-gray-300">Nome / Apelido</label>
+            <input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            {user.name}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300">
-            {user.email}
-          </p>
-
-          <div className="flex justify-around w-full mt-4">
-            <div className="text-center">
-              <span className="font-bold">{user.notes}</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Notas
-              </p>
-            </div>
+          <div className="w-full">
+            <label className="text-sm text-gray-600 dark:text-gray-300">Bio</label>
+            <textarea
+              rows={3}
+              value={bio}
+              onChange={e => setBio(e.target.value)}
+              placeholder="Conte um pouco sobre você…"
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
 
-          {/* Upload */}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  setUser(prev => ({ ...prev, avatar: reader.result }));
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-            className="text-sm"
-          />
-
-          {/* Ações */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-6 w-full">
-            <button
-              onClick={onClose}
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
-            >
-              Fechar
-            </button>
-            <button
-              className="w-full px-4 py-2 bg-green-500 text-white rounded-lg"
-            >
-              Editar Perfil
-            </button>
+          <div className="flex gap-3 w-full pt-4">
+            <button onClick={onClose} className="flex-1 px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white">Cancelar</button>
+            <button onClick={handleSave} className="flex-1 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Salvar</button>
           </div>
-
         </div>
       </div>
     </div>
