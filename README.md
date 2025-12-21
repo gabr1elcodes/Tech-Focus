@@ -1,5 +1,10 @@
-Imagens do Projeto TechFocus
+Dashboard de produtividade / mini-Notion, com foco em notas, organização e experiência do usuário, feito em React + Tailwind, com autenticação simulada e UI moderna
 
+🔹 React + Tailwind
+🔹 Componentização e modais reutilizáveis
+🔹 Autenticação simulada
+🔹 Responsivo (mobile-first)
+🔹 Boas práticas de UI/UX
 
 
 Modo Escuro
