@@ -9,6 +9,7 @@ import EditNoteModal from "../components/EditNoteModal";
 import DeleteNoteModal from "../components/DeleteNoteModal";
 import CreateNoteModal from "../components/CreateNoteModal";
 import ProfileModal from "../components/ProfileModal";
+import { useNotificacoes } from "../components/contexts/NotificationContext";
 
 const defaultNotes = [
   { id: 1, title: "Plano de Estudos 📚", content: "Essa é uma nota de exemplo. Você pode editar ou excluir quando quiser." },
@@ -23,6 +24,7 @@ const defaultNotes = [
 ];
 
 export default function Dashboard() {
+  const { adicionarNotificacao } = useNotificacoes();
   const [notes, setNotes] = useState([]);
   const [showWelcome, setShowWelcome] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +81,8 @@ export default function Dashboard() {
     const updatedNotes = notes.map(note => note.id === updatedNote.id ? updatedNote : note);
     setNotes(updatedNotes);
     saveNotes(updatedNotes);
+
+    adicionarNotificacao("alterado", updatedNote.title);
   }
 
   function handleEditNote(note) {
@@ -89,6 +93,9 @@ export default function Dashboard() {
     const updatedNotes = notes.map(note => note.id === id ? { ...note, title, cardDescription } : note);
     setNotes(updatedNotes);
     saveNotes(updatedNotes);
+
+    adicionarNotificacao("alterado", title);
+
     setEditingNote(null);
   }
 
@@ -97,9 +104,13 @@ export default function Dashboard() {
   }
 
   function confirmDelete(id) {
+    const nota = notes.find(n => n.id === id);
     const updatedNotes = notes.filter(note => note.id !== id);
     setNotes(updatedNotes);
     saveNotes(updatedNotes);
+
+    adicionarNotificacao("excluído", nota.title);
+
     setDeletingNote(null);
   }
 
@@ -119,7 +130,7 @@ export default function Dashboard() {
         <main className="flex-1 p-4 sm:p-6 overflow-y-auto">
           {showWelcome && (
             <div className="mb-6 p-4 rounded-xl bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between transition-colors">
-              <p className="text-blue-700 dark:text-blue-300 font-medium">Seja bem-vindo ao <span className="font-semibold">TechFocus</span> 👋</p>
+              <p className="text-blue-700 dark:text-blue-300 font-medium">Bem-vindo ao <span className="font-bold">TechFocus</span> 👋</p>
               <button onClick={() => setShowWelcome(false)} className="text-blue-600 dark:text-blue-400 text-sm hover:underline">Fechar</button>
             </div>
           )}
@@ -137,7 +148,19 @@ export default function Dashboard() {
       <NoteModal isOpen={isModalOpen} onClose={handleCloseModal} note={selectedNote} onSave={handleSaveNote} />
       {editingNote && <EditNoteModal note={editingNote} onClose={() => setEditingNote(null)} onSave={handleSaveEdit} />}
       {deletingNote && <DeleteNoteModal note={deletingNote} onCancel={() => setDeletingNote(null)} onConfirm={() => confirmDelete(deletingNote.id)} />}
-      {isCreatingNote && <CreateNoteModal onClose={() => setIsCreatingNote(false)} onCreate={newNote => { const updatedNotes = [newNote, ...notes]; setNotes(updatedNotes); saveNotes(updatedNotes); setIsCreatingNote(false); }} />}
+      {isCreatingNote && (
+        <CreateNoteModal
+          onClose={() => setIsCreatingNote(false)}
+          onCreate={newNote => {
+            const updatedNotes = [newNote, ...notes];
+            setNotes(updatedNotes);
+            saveNotes(updatedNotes);
+            setIsCreatingNote(false);
+
+            adicionarNotificacao("criado", newNote.title);
+          }}
+        />
+      )}
 
       <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} user={user} setUser={setUser} />
     </div>

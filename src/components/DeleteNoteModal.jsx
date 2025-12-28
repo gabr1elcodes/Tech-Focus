@@ -2,13 +2,11 @@ export default function DeleteNoteModal({ note, onCancel, onConfirm }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
 
-      {/* OVERLAY — SEM z-index maior */}
       <div
         onClick={onCancel}
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
       />
 
-      {/* PAINEL — PRECISA SER relative + z-10 */}
       <div className="relative z-10 w-full max-w-sm mx-4
                 max-h-[90vh] overflow-y-auto
                 bg-white dark:bg-gray-900
