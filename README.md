@@ -1,11 +1,12 @@
 Dashboard de produtividade / mini-Notion, com foco em notas, organização e experiência do usuário, feito em React + Tailwind, com autenticação simulada e UI moderna
 
+Deploy: https://tech-focus-gabr1elcodes-projects.vercel.app/
+
 🔹 React + Tailwind
 🔹 Componentização e modais reutilizáveis
 🔹 Autenticação simulada
 🔹 Responsivo (mobile-first)
 🔹 Boas práticas de UI/UX
-
 
 Modo Escuro
 <div style="text-align: center;">
