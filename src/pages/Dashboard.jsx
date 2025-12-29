@@ -89,15 +89,18 @@ export default function Dashboard() {
     setEditingNote(note);
   }
 
-  function handleSaveEdit(id, title, cardDescription) {
-    const updatedNotes = notes.map(note => note.id === id ? { ...note, title, cardDescription } : note);
-    setNotes(updatedNotes);
-    saveNotes(updatedNotes);
+  function handleSaveEdit(id, title, description) {
+  const updatedNotes = notes.map(note => 
+    note.id === id ? { ...note, title, content: description } : note
+  );
+  setNotes(updatedNotes);
+  saveNotes(updatedNotes);
 
-    adicionarNotificacao("alterado", title);
+  adicionarNotificacao("alterado", title);
 
-    setEditingNote(null);
-  }
+  setEditingNote(null);
+}
+
 
   function handleDeleteNote(note) {
     setDeletingNote(note);

@@ -21,7 +21,7 @@ export default function NoteCard({ note, onOpen, onEdit, onDelete }) {
         </h3>
 
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-200 line-clamp-3">
-          {note.cardDescription || note.content}
+          {note.content}
         </p>
       </div>
 

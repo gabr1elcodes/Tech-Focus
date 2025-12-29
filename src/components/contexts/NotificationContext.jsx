@@ -5,19 +5,47 @@ const NotificacaoContext = createContext();
 export function NotificacaoProvider({ children }) {
   const [notificacoes, setNotificacoes] = useState([]);
 
-  const adicionarNotificacao = (tipo, nota) => {
+  const adicionarNotificacao = (tipo, titulo) => {
+    const notificacoesAtivas = localStorage.getItem("notificacoes_ativas");
+
+
+    if (notificacoesAtivas === "false") return;
+
+    const mensagens = {
+      criado: `Nota criada: ${titulo}`,
+      alterado: `Nota atualizada: ${titulo}`,
+      excluído: `Nota excluída: ${titulo}`,
+    };
+
     const nova = {
       id: Date.now(),
       tipo,
-      notaId: nota.id,
-      mensagem: `${tipo === "criado" ? "Nova nota criada" : tipo === "alterado" ? "Nota alterada" : "Nota excluída"}: '${nota.titulo}'`,
+      mensagem: mensagens[tipo] || titulo,
       timestamp: new Date().toISOString(),
     };
+
     setNotificacoes(prev => [nova, ...prev]);
   };
 
+  const removerNotificacao = (id) => {
+    setNotificacoes(prev =>
+      prev.filter(notificacao => notificacao.id !== id)
+    );
+  };
+
+  const limparNotificacoes = () => {
+    setNotificacoes([]);
+  };
+
   return (
-    <NotificacaoContext.Provider value={{ notificacoes, adicionarNotificacao }}>
+    <NotificacaoContext.Provider
+      value={{
+        notificacoes,
+        adicionarNotificacao,
+        removerNotificacao,
+        limparNotificacoes,
+      }}
+    >
       {children}
     </NotificacaoContext.Provider>
   );
