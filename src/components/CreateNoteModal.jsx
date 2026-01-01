@@ -36,7 +36,7 @@ export default function CreateNoteModal({ onClose, onCreate }) {
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
       />
 
-      <div className="relative z-10 w-full max-w-md mx-4 bg-white dark:bg-gray-900 rounded-xl shadow-xl p-4 sm:p-6">
+      <div className="relative z-10 w-full max-w-md mx-4 bg-white dark:bg-gray-900 bg-gray-900 rounded-xl shadow-xl p-4 sm:p-6">
         <h2 className="text-lg font-semibold mb-4">
           Nova nota
         </h2>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getNotes, saveNotes } from "../utils/storage";
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar-Hero/Sidebar";
 import NoteCard from "../components/NoteCard";
 import EmptyState from "../components/EmptyState";
 import { NoteModal } from "../components/NoteModal";
