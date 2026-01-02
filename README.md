@@ -26,11 +26,29 @@ Tela de Login
 
 
 
+Decisões Técnicas
 
+Utilizei localStorage para persistência de dados visando simplicidade e performance em um projeto front-end sem backend.
+A aplicação foi estruturada em componentes reutilizáveis (Header, Sidebar, NoteCard e Modals) para facilitar manutenção e escalabilidade.
+Os modais foram centralizados para evitar duplicação de lógica e manter a UI consistente.
+O uso de TailwindCSS permitiu prototipação rápida mantendo padrão visual e responsividade.
 
-TechFocus é um projeto criado com React, TailwindCSS e Vite, desenvolvido para organizar notas, ideias e tarefas de forma rápida, intuitiva e visualmente agradável.  
+Aprendizados
 
-O projeto permite criar, editar e excluir notas, salvar o login do usuário, alternar entre modo claro e escuro, e armazenar dados localmente com segurança. Ideal para quem busca produtividade minimalista e funcional.
+Durante o desenvolvimento do TechFocus, aprofundei conhecimentos em:
+Organização de projetos React em escala média
+Gerenciamento de estado com hooks
+Criação de interfaces acessíveis e responsivas
+Estruturação de modais reutilizáveis
+Boas práticas de UI/UX focadas em produtividade
+
+Próximos Passos
+
+Implementar autenticação real
+Sincronização de dados
+Filtros e busca avançada de notas
+Testes automatizados
+Melhorias contínuas de UX
 
 Este projeto ainda está em produção e em constante desenvolvimento, com novas funcionalidades e melhorias planejadas.
 ---
