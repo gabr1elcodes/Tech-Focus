@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Bell } from "lucide-react";
-import { useNotificacoes } from "./contexts/NotificationContext";
+import { useNotificacoes } from "../contexts/NotificationContext";
 
 export default function Sino() {
   const { notificacoes, removerNotificacao } = useNotificacoes();

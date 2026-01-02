@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import techfocusLogo from "../assets/techfocusLogo.png";
+import techfocusLogo from "../../assets/techfocusLogo.png";
 
 const ProfileModal = ({ isOpen, onClose, user, setUser }) => {
   if (!isOpen) return null;

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { getNotes, saveNotes } from "../utils/storage";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar-Hero/Sidebar";
-import NoteCard from "../components/NoteCard";
-import EmptyState from "../components/EmptyState";
-import { NoteModal } from "../components/NoteModal";
-import EditNoteModal from "../components/EditNoteModal";
-import DeleteNoteModal from "../components/DeleteNoteModal";
-import CreateNoteModal from "../components/CreateNoteModal";
-import ProfileModal from "../components/ProfileModal";
+import Header from "../components/common/Header";
+import Sidebar from "../components/sidebar/Sidebar";
+import NoteCard from "../components/modals/NoteCard";
+import EmptyState from "../components/common/EmptyState";
+import { NoteModal } from "../components/modals/NoteModal";
+import EditNoteModal from "../components/modals/EditNoteModal";
+import DeleteNoteModal from "../components/modals/DeleteNoteModal";
+import CreateNoteModal from "../components/modals/CreateNoteModal";
+import ProfileModal from "../components/modals/ProfileModal";
 import { useNotificacoes } from "../components/contexts/NotificationContext";
 
 const defaultNotes = [
@@ -90,16 +90,16 @@ export default function Dashboard() {
   }
 
   function handleSaveEdit(id, title, description) {
-  const updatedNotes = notes.map(note => 
-    note.id === id ? { ...note, title, content: description } : note
-  );
-  setNotes(updatedNotes);
-  saveNotes(updatedNotes);
+    const updatedNotes = notes.map(note =>
+      note.id === id ? { ...note, title, content: description } : note
+    );
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
 
-  adicionarNotificacao("alterado", title);
+    adicionarNotificacao("alterado", title);
 
-  setEditingNote(null);
-}
+    setEditingNote(null);
+  }
 
 
   function handleDeleteNote(note) {
