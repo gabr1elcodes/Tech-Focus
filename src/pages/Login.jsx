@@ -8,8 +8,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  const [showToast, setShowToast] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   const navigate = useNavigate();
 
@@ -20,6 +21,13 @@ export default function Login() {
       setRememberMe(true);
     }
   }, []);
+
+  const showNotify = (message, type) => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast({ show: false, message: "", type: "" });
+    }, 3000);
+  };
 
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -53,20 +61,18 @@ export default function Login() {
         localStorage.removeItem("rememberedEmail");
       }
 
-      setShowToast(true);
+      showNotify("Login realizado com sucesso!", "success");
 
       setTimeout(() => {
         setIsLoading(false);
-        setShowToast(false);
         navigate("/dashboard");
       }, 1500);
 
     } catch (error) {
       setIsLoading(false);
+      const message = error.response?.data?.message || "Erro ao entrar. Verifique suas credenciais.";
       
-      const errorMessage = error.response?.data?.message || "Erro ao entrar. Verifique suas credenciais.";
-      
-      alert(errorMessage);
+      showNotify(message, "error");
     }
   };
 
@@ -87,9 +93,11 @@ export default function Login() {
           Faça login para continuar
         </p>
 
-        {showToast && (
-          <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
-            Login realizado com sucesso!
+        {toast.show && (
+          <div className={`fixed top-5 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${
+            toast.type === "success" ? "bg-green-500" : "bg-red-500"
+          } text-white`}>
+            {toast.message}
           </div>
         )}
 
