@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import techfocusLogo from '../assets/techfocusLogo.png';
+import api from "../services/api"; 
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,15 +30,22 @@ export default function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (emailError || !email || !password) return;
 
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      setShowToast(true);
+    try {
+      const response = await api.post("/login", {
+        email,
+        password,
+      });
+
+      const { token, user } = response.data;
+
+      localStorage.setItem("@TechFocus:token", token);
+      localStorage.setItem("@TechFocus:user", JSON.stringify(user));
 
       if (rememberMe) {
         localStorage.setItem("rememberedEmail", email);
@@ -45,11 +53,21 @@ export default function Login() {
         localStorage.removeItem("rememberedEmail");
       }
 
+      setShowToast(true);
+
       setTimeout(() => {
+        setIsLoading(false);
         setShowToast(false);
         navigate("/dashboard");
       }, 1500);
-    }, 2000);
+
+    } catch (error) {
+      setIsLoading(false);
+      
+      const errorMessage = error.response?.data?.message || "Erro ao entrar. Verifique suas credenciais.";
+      
+      alert(errorMessage);
+    }
   };
 
   return (
@@ -70,13 +88,12 @@ export default function Login() {
         </p>
 
         {showToast && (
-          <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
             Login realizado com sucesso!
           </div>
         )}
 
         <form className="space-y-6" onSubmit={handleSubmit}>
-          {/* Email */}
           <div>
             <div className="relative">
               <i className="bx bx-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 text-2xl"></i>
@@ -99,7 +116,6 @@ export default function Login() {
             )}
           </div>
 
-          {/* Senha */}
           <div className="relative">
             <i className="bx bx-lock-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 text-2xl"></i>
             <input
@@ -112,7 +128,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Lembrar senha + Esqueci */}
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
