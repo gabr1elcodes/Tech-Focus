@@ -2,6 +2,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import techfocusLogo from "../assets/techfocusLogo.png";
+import api from "../services/api";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -13,12 +14,12 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
-    // 🔐 Validações básicas
     if (!email || !password || !confirmPassword) {
       setError("Preencha todos os campos.");
       return;
@@ -36,19 +37,25 @@ export default function Register() {
 
     setIsLoading(true);
 
-    // Simulação de backend
-    const emailJaExiste = false;
+    try {
+      await api.post("/users", {
+        email,
+        password,
+      });
 
-    setTimeout(() => {
-      if (emailJaExiste) {
+      setShowSuccessToast(true);
+
+      setTimeout(() => {
         setIsLoading(false);
-        setError("Este email já está cadastrado.");
-        return;
-      }
+        setShowSuccessToast(false);
+        navigate("/");
+      }, 2000);
 
+    } catch (err) {
       setIsLoading(false);
-      navigate("/dashboard");
-    }, 2000);
+      const message = err.response?.data?.message || "Erro ao criar conta. Tente novamente.";
+      setError(message);
+    }
   }
 
   return (
@@ -64,9 +71,14 @@ export default function Register() {
           Cadastre-se
         </h1>
 
+        {showSuccessToast && (
+          <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+            Conta criada com sucesso! Redirecionando...
+          </div>
+        )}
+
         <form className="space-y-6" onSubmit={handleSubmit}>
 
-          {/* Email */}
           <div className="relative">
             <i className="bx bx-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 text-2xl" />
             <input
@@ -79,7 +91,6 @@ export default function Register() {
             />
           </div>
 
-          {/* Senha */}
           <div className="relative">
             <i className="bx bx-lock-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 text-2xl" />
             <input
@@ -99,7 +110,6 @@ export default function Register() {
             </button>
           </div>
 
-          {/* Confirmar senha */}
           <div className="relative">
             <i className="bx bx-lock-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 text-2xl" />
             <input
@@ -112,14 +122,12 @@ export default function Register() {
             />
           </div>
 
-          {/* Erro */}
           {error && (
-            <p className="text-red-400 text-sm text-center">
+            <p className="text-red-400 text-sm text-center bg-red-900/20 py-2 rounded-lg">
               {error}
             </p>
           )}
 
-          {/* Botão */}
           <button
             type="submit"
             disabled={isLoading}

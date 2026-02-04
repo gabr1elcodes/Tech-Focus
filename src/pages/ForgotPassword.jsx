@@ -1,14 +1,22 @@
 import techfocusLogo from '../assets/techfocusLogo.png'
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import api from "../services/api";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showToast, setShowToast] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   const navigate = useNavigate();
+
+  const showNotify = (message, type) => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast({ show: false, message: "", type: "" });
+    }, 3000);
+  };
 
   const validateEmail = (value) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -19,23 +27,28 @@ export default function ForgotPassword() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (emailError || !email) return;
 
     setIsLoading(true);
 
-    // Simula envio de email de recuperação
-    setTimeout(() => {
-      setIsLoading(false);
-      setShowToast(true);
+    try {
+      await api.post("/forgot-password", { email });
 
-      // Aguarda o feedback visual antes de redirecionar
+      setIsLoading(false);
+      showNotify("Email de recuperação enviado!", "success");
+
       setTimeout(() => {
-        setShowToast(false);
-        navigate("/login");
-      }, 1500);
-    }, 2000);
+        navigate("/");
+      }, 2000);
+
+    } catch (error) {
+      setIsLoading(false);
+      
+      const message = error.response?.data?.message || "Erro ao processar solicitação.";
+      showNotify(message, "error");
+    }
   };
 
   return (
@@ -55,9 +68,11 @@ export default function ForgotPassword() {
           Digite seu email para recuperar a senha
         </p>
 
-        {showToast && (
-          <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
-            Email de recuperação enviado!
+        {toast.show && (
+          <div className={`fixed top-5 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${
+            toast.type === "success" ? "bg-green-500" : "bg-red-500"
+          } text-white`}>
+            {toast.message}
           </div>
         )}
 
