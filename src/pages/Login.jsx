@@ -44,7 +44,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await api.post("/login", {
+      const response = await api.post("/auth/login", {
         email,
         password,
       });
@@ -69,7 +69,9 @@ export default function Login() {
 
     } catch (error) {
       setIsLoading(false);
-      const message = error.response?.data?.message || "Erro ao entrar. Verifique suas credenciais.";
+      const message =
+        error.response?.data?.message ||
+        "Erro ao entrar. Verifique suas credenciais.";
       
       showNotify(message, "error");
     }

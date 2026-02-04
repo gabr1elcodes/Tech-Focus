@@ -35,15 +35,16 @@ export default function Dashboard() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem("techfocus_user");
-    return stored ? JSON.parse(stored) : {
-      avatar: "",
-      name: "Gabriel Oliveira",
-      bio: "Desenvolvedor web",
-      email: "gabriel@email.com",
-      notes: 12
-    };
-  });
+  const stored = localStorage.getItem("@TechFocus:user");
+  return stored ? JSON.parse(stored) : {
+    avatar: "",
+    name: "Gabriel Oliveira",
+    bio: "Desenvolvedor web",
+    email: "gabriel@email.com",
+    notes: 12
+  };
+});
+
 
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
 
