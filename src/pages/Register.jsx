@@ -38,7 +38,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      await api.post("/users", {
+      await api.post("/auth/register", {
         email,
         password,
       });
