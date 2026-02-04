@@ -9,7 +9,6 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   const navigate = useNavigate();
