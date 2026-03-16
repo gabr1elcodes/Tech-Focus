@@ -77,6 +77,32 @@ export default function Login() {
     }
   };
 
+  const handleGuestLogin = async () => {
+  setIsLoading(true);
+
+  try {
+    const { data } = await api.post("/auth/login", {
+      email: "visitante@techfocus.com",
+      password: "visitante123",
+    });
+
+    const { token, user } = data;
+
+    localStorage.setItem("@TechFocus:token", token);
+    localStorage.setItem("@TechFocus:user", JSON.stringify(user));
+
+    showNotify("Entrando como visitante...", "success");
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1200);
+
+  } catch (error) {
+    setIsLoading(false);
+    showNotify("Erro ao entrar como visitante.", "error");
+  }
+};
+
   return (
     <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600">
       <div className="w-full max-w-md bg-blue-900/70 backdrop-blur-md rounded-2xl shadow-2xl p-10 text-white">
