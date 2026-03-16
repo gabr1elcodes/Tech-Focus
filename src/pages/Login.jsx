@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import techfocusLogo from '../assets/techfocusLogo.png';
-import api from "../services/api"; 
+import api from "../services/api";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,14 +65,14 @@ export default function Login() {
       setTimeout(() => {
         setIsLoading(false);
         navigate("/dashboard");
-      }, 1500);
+      }, 1200);
 
     } catch (error) {
       setIsLoading(false);
       const message =
-        error.response?.data?.message ||
+        error?.response?.data?.message ||
         "Erro ao entrar. Verifique suas credenciais.";
-      
+
       showNotify(message, "error");
     }
   };
@@ -95,9 +95,8 @@ export default function Login() {
         </p>
 
         {toast.show && (
-          <div className={`fixed top-5 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${
-            toast.type === "success" ? "bg-green-500" : "bg-red-500"
-          } text-white`}>
+          <div className={`fixed top-5 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${toast.type === "success" ? "bg-green-500" : "bg-red-500"
+            } text-white`}>
             {toast.message}
           </div>
         )}
@@ -111,10 +110,8 @@ export default function Login() {
                 autoComplete="email"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  validateEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={(e) => validateEmail(e.target.value)}
                 className="w-full pl-12 py-3 rounded-full bg-blue-800/70 border border-blue-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
               />
             </div>
@@ -157,7 +154,11 @@ export default function Login() {
             disabled={isLoading || !!emailError || !email || !password}
             className="w-full py-3 bg-white text-blue-900 font-semibold rounded-full hover:bg-gray-100 transition disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {isLoading ? "Entrando..." : "Login"}
+            {isLoading ? (
+              <span className="animate-pulse">Entrando...</span>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 
